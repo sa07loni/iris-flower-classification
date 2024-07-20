@@ -1,0 +1,100 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+install.packages("randomForest")
+library(randomForest)
+my_data <- read.csv("C:/Users/DELL/Downloads/IRIS.csv")
+print(head(my_data))
+
+```
+
+
+
+```{r}
+#View(my_data)
+summary(my_data)
+
+
+```
+
+{r}
+summary(my_data)
+
+
+```
+
+``{r}
+
+
+```
+
+splitting the data 
+```{r}
+dim(my_data)
+set.seed(123)
+sample_index <- sample(1:nrow(iris), 0.7*nrow(iris))
+train_data <- iris[sample_index,]
+test_data <- iris[sample_index,]
+```
+
+
+
+```{r}
+library(randomForest)
+model <- randomForest(Species ~ Sepal.Length+Sepal.Width+Petal.Length+Petal.Width, data = train_data)
+
+```
+
+
+
+
+
+
+```{r}
+
+
+
+predictions <- predict(model, newdata = test_data)
+
+
+print(predictions)
+
+
+
+
+
+```
+
+
+```{r}
+
+
+
+confusion_matrix <-table(test_data$Species,predictions)
+print(confusion_matrix)
+
+
+
+
+
+```
+``
+```{r}
+
+
+
+accuracy <- sum(diag(confusion_matrix)/sum(confusion_matrix))
+print(accuracy)
+
+
+
+```
+`{r}
+
+
+```
